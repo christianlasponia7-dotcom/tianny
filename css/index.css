@@ -1,0 +1,290 @@
+/* === Reset & Base Styles === */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: #0a1f3c; /* dark navy blue */
+  background-image: url("js/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: #c4ffe3; /* light mint green text */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === Container (Glassmorphism) === */
+.container {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(15, 15, 15, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 16px;
+  padding: 40px 35px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+  border: 2px solid #0088ff; /* blue edge highlight */
+  animation: slideUp 0.8s ease-out;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.4s;
+}
+
+.container:hover {
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.65);
+  transform: translateY(-4px);
+  border-color: #00ffaa; /* blue-green glow */
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, rgba(0, 170, 255, 0.15) 0%, rgba(0, 255, 200, 0.05) 60%);
+  transform: rotate(25deg);
+  pointer-events: none;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* === Form Elements === */
+.form {
+  display: flex;
+  flex-direction: column;
+  animation: fadeSlide 0.5s ease;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.form h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  color: #00ccff; /* blue headline */
+  text-shadow: 0 0 8px rgba(0, 200, 255, 0.5);
+}
+
+.form-group { margin-bottom: 18px; }
+
+/* === Input Wrapper (icons inside input) === */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 38px; /* padding-left for icon, right for eye toggle */
+  border: 2px solid #0088ff;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: rgba(20, 20, 20, 0.85);
+  color: #eafff7;
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 16px;
+  color: #00ccff;
+  pointer-events: none;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #00ccff;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.toggle-password:hover { 
+  color: #00ffaa;
+  text-shadow: 0 0 6px rgba(0, 255, 170, 0.6);
+}
+
+/* === Labels === */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #aaffcc;
+  text-shadow: 0 0 4px rgba(0, 255, 150, 0.3);
+}
+
+/* === Focus & Validation States === */
+input:focus {
+  border-color: #00e6ac;
+  background-color: rgba(0, 100, 100, 0.15);
+  outline: none;
+  box-shadow: 0 0 12px rgba(0, 255, 170, 0.5);
+}
+
+input:valid {
+  border-color: #00cc88;
+  box-shadow: 0 0 6px rgba(0, 255, 150, 0.4);
+}
+
+input:invalid:focus {
+  border-color: #00aaff;
+  box-shadow: 0 0 6px rgba(0, 170, 255, 0.5);
+}
+
+/* === Forgot Password Form === */
+#forgot-password-form {
+  background: rgba(15, 15, 15, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 35px 30px;
+  border-radius: 16px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
+  max-width: 420px;
+  margin: 40px auto;
+  color: #eafff7;
+  border: 2px solid #00ccff;
+  animation: slideDown 0.5s ease-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#forgot-password-form:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 42px rgba(0, 255, 200, 0.4);
+  border-color: #00ffaa;
+}
+
+#forgot-password-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 24px;
+  color: #00ffaa;
+  text-shadow: 0 0 10px rgba(0, 255, 170, 0.6);
+}
+
+#forgot-password-form p {
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #c4ffe3;
+  opacity: 0.85;
+}
+
+/* === Button === */
+button {
+  padding: 12px;
+  background: linear-gradient(135deg, #0088ff, #00cc66);
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 200, 255, 0.2);
+}
+
+button:hover {
+  background: linear-gradient(135deg, #00ccff, #00ffaa);
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 255, 200, 0.5);
+}
+
+button:active { transform: scale(0.97); }
+
+/* === Toggle Links === */
+.toggle-form {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #00ffaa;
+}
+
+.toggle-form a {
+  color: #00ccff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.toggle-form a:hover { color: #00ffaa; text-decoration: underline; }
+
+/* === Hidden Class (for JS) === */
+.hidden { display: none; opacity: 0; transform: translateY(15px); transition: opacity 0.4s ease, transform 0.4s ease; }
+.hidden.show { display: block; opacity: 1; transform: translateY(0); }
+
+/* Success & Error Messages (per-form) */
+.message {
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.message.show { display: block; opacity: 1; }
+
+.message.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 2px solid #00cc66;
+}
+
+.message.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 2px solid #ff4444;
+}
+
+/* === Footer === */
+footer p {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+  color: #00ccff;
+}
+
+/* === Responsive Fixes === */
+@media (max-width: 768px) {
+  .container, #forgot-password-form { padding: 30px 25px; }
+  .form h2, #forgot-password-form h2 { font-size: 22px; }
+  input, button { font-size: 14px; padding: 10px; }
+  .toggle-password { font-size: 16px; }
+  .toggle-form { font-size: 13px; }
+}
+
+@media (max-width: 480px) {
+  .form h2, #forgot-password-form h2 { font-size: 20px; }
+  label { font-size: 13px; }
+  #forgot-password-form p { font-size: 12px; }
+  footer p { font-size: 12px; }
+} 

@@ -1,0 +1,479 @@
+/* =============================== GLOBAL RESET ================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =============================== BODY ================================ */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #fff;
+  background: linear-gradient(
+      135deg,
+      rgba(11, 20, 55, 0.97),
+      rgba(11, 58, 20, 0.9),
+      rgba(0, 0, 0, 0.95)
+    ),
+    url("js/logo.jpg") no-repeat center/cover;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* =============================== NAVIGATION ================================ */
+nav {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 255, 179, 0.3);
+}
+
+.navbar {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.navbar a {
+  color: #00ff4c;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 10px 18px;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  background: linear-gradient(90deg, #1e90ff, #00ff4c);
+  color: #fff;
+  transform: scale(1.08);
+  box-shadow: 0 0 16px rgba(0, 255, 179, 0.55);
+}
+
+/* =============================== CART BUTTON ================================ */
+.cart-btn {
+  position: fixed;
+  top: 18px;
+  right: 28px;
+  background: linear-gradient(135deg, #000, #1e90ff, #00ff4c);
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  color: #fff;
+  padding: 12px 14px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 25px rgba(0, 255, 179, 0.6),
+    inset 0 2px 6px rgba(255, 255, 255, 0.15);
+  transition: all 0.35s ease;
+  z-index: 2000;
+  animation: glowCart 2s infinite alternate;
+}
+
+.cart-btn:hover {
+  transform: scale(1.2) rotate(5deg);
+  box-shadow: 0 12px 35px rgba(30, 144, 255, 0.8),
+    inset 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+#cartCount {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: linear-gradient(90deg, #1e90ff, #00ff4c);
+  color: #fff;
+  border-radius: 50%;
+  padding: 4px 7px;
+  font-size: 13px;
+  font-weight: bold;
+  border: 2px solid #000;
+  box-shadow: 0 0 14px rgba(0, 255, 179, 0.7);
+  animation: pulseBadge 1.8s infinite;
+}
+
+/* =============================== CART MODAL (Scrollable) ================================ */
+#cartModal .modal-content {
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+}
+
+#cartItems {
+  flex: 1;
+  overflow-y: auto;
+  margin: 10px 0;
+  max-height: 50vh;
+}
+
+/* Scrollbar styling */
+#cartItems::-webkit-scrollbar {
+  width: 8px;
+}
+#cartItems::-webkit-scrollbar-thumb {
+  background: #1e90ff;
+  border-radius: 6px;
+}
+#cartItems::-webkit-scrollbar-thumb:hover {
+  background: #00ff4c;
+}
+
+/* =============================== FILTER BOX ================================ */
+.filter-box {
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  max-width: 960px;
+  margin: 30px auto;
+  box-shadow: 0 8px 34px rgba(0, 255, 179, 0.35);
+  backdrop-filter: blur(12px);
+  animation: fadeInUp 1s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  border: 2px solid transparent;
+  background: linear-gradient(120deg, #00ff4c, #1e90ff, #00ff4c) border-box;
+  background-size: 300% 300%;
+  animation: glowing-border 6s linear infinite;
+  pointer-events: none;
+}
+
+/* =============================== FILTER BUTTONS ================================ */
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px auto;
+}
+
+.filter-buttons button {
+  background: rgba(0, 0, 0, 0.75);
+  color: #00ff4c;
+  border: 2px solid #1e90ff;
+  padding: 11px 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-buttons button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #00ff4c, #1e90ff);
+  transition: left 0.35s ease;
+}
+
+.filter-buttons button:hover::after {
+  left: 0;
+}
+
+.filter-buttons button:hover {
+  background: rgba(30, 144, 255, 0.25);
+  transform: translateY(-3px) scale(1.07);
+  box-shadow: 0 0 16px rgba(0, 255, 76, 0.65);
+  color: #fff;
+}
+
+.filter-buttons button.active {
+  background: linear-gradient(90deg, #1e90ff, #00ff4c);
+  color: #000;
+  box-shadow: 0 0 20px rgba(30, 144, 255, 0.9);
+}
+
+/* =============================== PRODUCT AREA ================================ */
+.product-area {
+  max-width: 1200px;
+  margin: 45px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+/* CATEGORY BOX */
+.category-box {
+  background: rgba(0, 0, 0, 0.8);
+  border-left: 6px solid #00ff4c;
+  padding: 26px;
+  border-radius: 18px;
+  box-shadow: 0 6px 30px rgba(0, 255, 179, 0.3);
+  transition: all 0.4s ease;
+  animation: fadeInUp 1.1s ease forwards;
+}
+
+.category-box:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 42px rgba(0, 255, 179, 0.55);
+}
+
+.category-box h2 {
+  color: #00ff4c;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #00ff4c, 0 0 14px #1e90ff;
+  animation: glowPulse 2.2s infinite alternate;
+}
+
+/* PRODUCT GRID */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 26px;
+}
+
+/* PRODUCT CARD */
+.product-card {
+  background: linear-gradient(145deg, rgba(0, 0, 0, 0.7), rgba(11, 20, 55, 0.95));
+  border-left: 5px solid #1e90ff;
+  border-radius: 15px;
+  padding: 22px;
+  text-align: center;
+  color: #00ff4c;
+  font-weight: bold;
+  box-shadow: 0 5px 22px rgba(0, 255, 179, 0.3);
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: translateY(-7px) scale(1.06);
+  box-shadow: 0 10px 28px rgba(0, 255, 179, 0.45);
+}
+
+.product-card img {
+  max-width: 100%;
+  height: 175px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.1);
+}
+
+.product-card h3 {
+  font-size: 1.35rem;
+  margin: 10px 0 6px;
+  color: #1e90ff;
+}
+
+.product-card p {
+  margin: 5px 0;
+  font-weight: normal;
+  color: #0eec4d;
+}
+
+.product-card strong {
+  color: #00ff4c;
+  font-size: 1.2rem;
+}
+
+/* PRODUCT BUTTONS */
+.product-card button {
+  margin-top: 12px;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #000, #1e90ff, #00ff4c);
+  transition: all 0.35s ease;
+  text-transform: uppercase;
+}
+
+.product-card button:hover {
+  background: linear-gradient(135deg, #00ff4c, #1e90ff, #000);
+  box-shadow: 0 0 18px rgba(0, 255, 179, 0.75);
+  transform: scale(1.1);
+}
+
+/* =============================== MODALS ================================ */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1100;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #111;
+  color: #00ff2a;
+  padding: 26px;
+  border-radius: 15px;
+  width: 420px;
+  max-width: 92%;
+  text-align: center;
+  border: 2px solid #1e90ff;
+  box-shadow: 0 0 28px rgba(0, 255, 100, 0.55);
+  animation: slideUp 0.35s ease;
+  position: relative; /* ✅ Keep close button inside */
+}
+
+.modal-content h2 {
+  color: #00ff4c;
+  margin-bottom: 16px;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  width: 100%;
+  padding: 9px;
+  margin-top: 6px;
+  border-radius: 8px;
+  border: none;
+}
+
+.modal-content button {
+  margin-top: 20px;
+  padding: 10px 22px;
+  background: linear-gradient(90deg, #1e90ff, #00ff4c);
+  border: none;
+  border-radius: 10px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.25s;
+}
+
+.modal-content button:hover {
+  transform: scale(1.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+/* Close / Exit button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: linear-gradient(135deg, #ff4c4c, #ff9900);
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25),
+              0 0 15px rgba(255,76,76,0.8);
+  transition: transform 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+  z-index: 10;
+}
+
+.close:hover {
+  background: linear-gradient(135deg, #ff9900, #ff4c4c);
+  transform: scale(1.2) rotate(180deg);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3),
+              0 0 22px rgba(255,153,0,0.9);
+}
+
+/* =============================== FOOTER ================================ */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #00ff4c;
+  font-size: 14px;
+  border-top: 2px solid #1e90ff;
+  margin-top: auto;
+  letter-spacing: 0.5px;
+}
+
+/* =============================== ANIMATIONS ================================ */
+@keyframes glowing-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(45px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes glowPulse {
+  from { text-shadow: 0 0 10px #00ff4c, 0 0 14px #1e90ff; }
+  to { text-shadow: 0 0 16px #1e90ff, 0 0 22px #00ff4c; }
+}
+
+@keyframes glowCart {
+  0% { box-shadow: 0 0 20px rgba(0, 255, 76, 0.6), 0 0 30px rgba(30, 144, 255, 0.5); }
+  100% { box-shadow: 0 0 30px rgba(0, 255, 76, 0.9), 0 0 45px rgba(30, 144, 255, 0.8); }
+}
+
+@keyframes pulseBadge {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* =============================== RESPONSIVE ================================ */
+@media (max-width: 768px) {
+  .navbar { gap: 10px; }
+  .navbar a { font-size: 1rem; padding: 8px 14px; }
+  .filter-box { padding: 16px; }
+  .filter-buttons { flex-direction: column; gap: 10px; }
+  .product-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .category-box h2 { font-size: 1.6rem; }
+  .product-card { font-size: 0.95rem; padding: 16px; }
+}

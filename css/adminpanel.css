@@ -1,0 +1,358 @@
+/* ========================== ADMIN PANEL - NEON CYBERPUNK THEME v2 ========================== */
+
+/* Base Styling */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(
+      135deg,
+      rgba(11, 20, 55, 0.97),
+      rgba(11, 58, 20, 0.9),
+      rgba(0, 0, 0, 0.95)
+    ),
+    url("js/logo.jpg") no-repeat center/cover;
+  background-attachment: fixed;
+  color: #00ff4c;
+  padding: 40px 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Heading */
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #00ff4c;
+  text-shadow: 0 0 12px #1e90ff, 0 0 16px #00ff4c;
+  animation: glowPulse 2.5s infinite alternate;
+  letter-spacing: 1.2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+h1 i {
+  font-size: 1.5em;
+}
+
+/* Orders Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 22px rgba(0, 255, 179, 0.3);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* ========================== CATEGORIES SECTION ========================== */
+
+.categories {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  padding: 0 15px;
+}
+
+.categories h2 {
+  color: #00ff4c;
+  text-shadow: 0 0 12px #1e90ff, 0 0 16px #00ff4c;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.categories h2 i {
+  font-size: 1.5em;
+  color: #1e90ff;
+}
+
+.category-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category-btn {
+  background: transparent;
+  border: 2px solid #00ff4c;
+  color: #00ff4c;
+  padding: 10px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+  box-shadow: 0 0 8px rgba(0, 255, 76, 0.5);
+  user-select: none;
+}
+
+.category-btn i {
+  color: #1e90ff;
+  font-size: 1.2em;
+}
+
+/* Hover and Active States */
+.category-btn:hover {
+  background: rgba(0, 255, 76, 0.15);
+  box-shadow: 0 0 16px #00ff4c, 0 0 24px #1e90ff;
+}
+
+.category-btn.active {
+  background: #00ff4c;
+  color: #000;
+  box-shadow: 0 0 24px #00ff4c, 0 0 40px #1e90ff;
+  border-color: #00ff4c;
+}
+
+/* ========================== ORDERS TABLE ========================== */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: rgba(0, 0, 0, 0.75);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 22px rgba(0, 255, 179, 0.3);
+  animation: fadeInUp 0.8s ease-out;
+}
+
+thead th {
+  background-color: rgba(30, 144, 255, 0.25);
+  color: #00ff4c;
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid #1e90ff;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+thead th i {
+  margin-right: 8px;
+  color: #1e90ff;
+}
+
+tbody td {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(0, 255, 179, 0.15);
+  font-size: 0.95rem;
+  color: #fff;
+  word-break: break-word;
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+tbody tr:hover {
+  background-color: rgba(0, 255, 179, 0.07);
+  transition: background 0.3s ease;
+}
+
+/* ========================== ANIMATIONS ========================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================== RESPONSIVE DESIGN ========================== */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 20px;
+    background: linear-gradient(145deg, rgba(0,0,0,0.65), rgba(0, 255, 179, 0.05));
+    border: 1px solid rgba(0, 255, 179, 0.2);
+    border-radius: 14px;
+    padding: 15px;
+    box-shadow: 0 0 18px rgba(0, 255, 179, 0.2);
+  }
+
+  td {
+    padding: 12px;
+    text-align: right;
+    position: relative;
+    font-size: 0.95rem;
+    border: none;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #1e90ff;
+    font-size: 0.85rem;
+  }
+}
+
+
+
+
+/* Table Header */
+thead th {
+  background-color: rgba(30, 144, 255, 0.25);
+  color: #00ff4c;
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid #1e90ff;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+thead th i {
+  margin-right: 8px;
+  color: #1e90ff;
+}
+
+/* Table Body */
+tbody td {
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(0, 255, 179, 0.15);
+  font-size: 0.95rem;
+  color: #fff;
+  word-break: break-word;
+}
+
+/* Zebra Striping */
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Hover Effect */
+tbody tr:hover {
+  background-color: rgba(0, 255, 179, 0.07);
+  transition: background 0.3s ease;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes glowPulse {
+  from { text-shadow: 0 0 12px #00ff4c, 0 0 16px #1e90ff; }
+  to { text-shadow: 0 0 18px #1e90ff, 0 0 24px #00ff4c; }
+}
+
+/* ========================== RESPONSIVE DESIGN ========================== */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 20px;
+    background: linear-gradient(145deg, rgba(0,0,0,0.65), rgba(0, 255, 179, 0.05));
+    border: 1px solid rgba(0, 255, 179, 0.2);
+    border-radius: 14px;
+    padding: 15px;
+    box-shadow: 0 0 18px rgba(0, 255, 179, 0.2);
+  }
+
+  td {
+    padding: 12px;
+    text-align: right;
+    position: relative;
+    font-size: 0.95rem;
+    border: none;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #1e90ff;
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================== CATEGORIES SECTION ========================== */
+.categories {
+  margin: 30px auto;
+  text-align: center;
+  animation: fadeInUp 1s ease;
+}
+
+.categories h2 {
+  font-size: 1.8rem;
+  color: #00ff4c;
+  text-shadow: 0 0 10px #1e90ff;
+  margin-bottom: 20px;
+}
+
+.category-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.category-btn {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid #00ff4c;
+  color: #00ff4c;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 0 12px rgba(30, 144, 255, 0.3);
+}
+
+.category-btn i {
+  margin-right: 8px;
+}
+
+.category-btn:hover,
+.category-btn.active {
+  background-color: #00ff4c;
+  color: #000;
+  box-shadow: 0 0 18px #00ff4c;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .category-btn {
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}
